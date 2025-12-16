@@ -12,6 +12,8 @@ export class ExpensesController {
 
   @Post()
   async create(@Body() body: any) {
+    console.log('nuevo gasto recibido');
+    
     return await this.service.create(body);
   }
 

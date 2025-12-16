@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ExpensesModule } from './expenses/expenses.module';
 import { GoalsModule } from './goals/goals.module';
+import { HealthModule } from './health/health.module';
 import { Expense } from './entities/expense.entity';
 import { SavingsGoal } from './entities/goal.entity';
 import { GoalTransaction } from './entities/goal-transaction.entity';
@@ -19,10 +20,12 @@ const DEFAULT_DB =
       ssl: { rejectUnauthorized: false },
       entities: [Expense, SavingsGoal, GoalTransaction],
       synchronize: true,
-      logging: false,
+      logging: ['query', 'error', 'warn', 'info'],
+      logger: 'advanced-console',
     }),
     ExpensesModule,
     GoalsModule,
+    HealthModule,
   ],
 })
 export class AppModule {}
